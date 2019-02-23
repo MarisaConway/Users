@@ -9,9 +9,19 @@ def index():
     users = mysql.query_db('SELECT * FROM users;')
     userData = users
     print(users)
-    return render_template("index.html", all_users = users, userData = userData )
+    return render_template("index.html", all_users = users, userData = userData[0] )
 
-
+@app.route("/users/<id>/destroy")
+def delete (id):
+    db = connectToMySQL("users")
+    num= int(id)
+    query = f"DELETE FROM users WHERE id = {num} ;"
+    data = {
+        "num": int(id)
+    }
+    db.query_db(query, data)
+    print(query)
+    return redirect("/users")
 
 
 @app.route("/users/new")
