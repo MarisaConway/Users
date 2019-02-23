@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>User</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        
+        body {
+            text-align: center;
+        }
+        
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 70%;
+            margin:auto;
+            border: 1px solid black;
+            }
+
+        th {
+            background-color:darkgray;
+            color:black;
+
+        }
+            
+        td, th {
+            border: 1px solid #dddddd; 
+            text-align: left;
+            padding: 8px;
+            }
+            
+        tr:nth-child(even) {
+            background-color: #dddddd;
+            }
+    </style>
+</head>
+<body>
+    <h1>All Users</h1>
+    <table style = "width:80%">
+        <tr>
+            <th>ID</th>
+            <th>Full Name</th> 
+            <th>Email</th>
+            <th>Created At</th>
+            <th>Actions</th>
+        </tr>
+
+    {% for one_user in all_users %}
+        <tr>
+            <td>{{one_user["id"]}}</td>
+            <td>{{one_user["first_name"]}}  {{one_user["last_name"]}}</td>
+            <td>{{one_user["email"]}}</td>
+            <td>{{one_user["created_at"]}}</td>
+            <td><a href="/users/{{userData.id}}/edit">Edit</a>
+                <a href="/users/{{userData.id}}/destroy">Delete</a></td>
+        </tr>  
+    {% endfor %}
+    </table>
+    <a href="/users/new"><button>Add a New User</button></a>
+</body>
+</html>
