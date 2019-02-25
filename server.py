@@ -80,7 +80,7 @@ def edit_id (id):
 @app.route("/users/<id>/update", methods=["POST"])
 def update(id):
     db = connectToMySQL("users")
-    query = "UPDATE users SET `first_name` = %(fn)s, `last_name` = %(ln)s, `email` = %(email)s WHERE (`id` = int %(id_num)s);"
+    query = "UPDATE users SET first_name = %(fn)s, last_name = %(ln)s, email = %(email)s WHERE id = %(id_num)s;"
     data = {
         "fn" : request.form["first_name"],
         "ln" : request.form["last_name"],
